@@ -1,45 +1,35 @@
-## Spring Boot Restful
+## 使用 Swagger 来构建的Restful API 文档
 
 ### 练习描述
-- 在`UserController`中按照Restful API设计 来补全接口
+- 在`UserController`中按照Swagger配置来补全注解
 ```
+// Todo:此处写注解
 
 @RestController
-@RequestMapping("")
-//ToDo:在上一行代码("")中填写合适的RestfulApi
+@RequestMapping("/api")
 public class UserController {
 
     @Autowired
     private UserService userService;
 
-    @GetMapping("")
-    //ToDo:在上一行代码("")中填写合适的RestfulApi
+    @GetMapping("/users")
     public ResponseEntity getAllUser() {
         return new ResponseEntity<>(userService.getAllUser(), HttpStatus.OK);
     }
-
-    @PostMapping("")
-    //ToDo:在上一行代码("")中填写合适的RestfulApi
-    public ResponseEntity addUser(@RequestBody User user) {
-        userService.addUser(user);
-        return new ResponseEntity(HttpStatus.CREATED);
-    }
-
-    @PutMapping("")
-    //ToDo:在上一行代码("")中填写合适的RestfulApi
-    public ResponseEntity updateUserById(@PathVariable int userId, @RequestBody User user) throws BusinessException {
-        userService.updateUserById(userId, user);
-        return new ResponseEntity(HttpStatus.NO_CONTENT);
-    }
-
-    @DeleteMapping("")
-    //ToDo:在上一行代码("")中填写合适的RestfulApi
-    public ResponseEntity deleteUserById(@PathVariable int userId) throws BusinessException {
-        userService.deleteUserById(userId);
-        return new ResponseEntity(HttpStatus.NO_CONTENT);
-    }
-}
 ```
+- 在`build.gradle`中按照Swagger配置来补全依赖
+```
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	//ToDo:在此处填写依赖
+}
+
+```
+- 拷贝`https://github.com/swagger-api/swagger-ui`中的`dist`放在`main/webapp/swagger`文件夹内
+
+![https://github.com/swagger-api/swagger-ui](image/SwaggerGitub.png)
+
 
 ### 环境描述
 - java8
@@ -47,7 +37,7 @@ public class UserController {
 
 ### 如何开始
 - 克隆模版库
-- 启动项目，若出现 Tomcat started on port(s): 8080 (http) 字样，并打开`localhost:8080`页面后输出如下格式，说明项目启动成功。
+- 启动项目，若出现 Tomcat started on port(s): 8080 (http) 字样，并打开`localhost:8080/api/users`页面后输出如下格式，说明项目启动成功。
 ```
 [
     {
@@ -67,6 +57,8 @@ public class UserController {
 
 
 ### 输出规范
--  在`UserController`中按照Restful API设计补全接口。
--  根据项目完 `增删改查` 功能
-- 并且在项目根目录中添加 `增删改查`功能截图
+-  在`UserController`补全注解。
+-  在`build.gradle`补全swagger依赖。
+-  访问`http://localhost:8080/swagger-ui.html`如下图
+![https://github.com/swagger-api/swagger-ui](image/SwaggerHtml.png)
+
